@@ -1,24 +1,72 @@
-# README
+# My Portfolio Site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+完全自作のポートフォリオサイト
 
-Things you may want to cover:
+## 🛠️ 使用技術
 
-* Ruby version
+### アプリケーション
+- Ruby on Rails 8.0.3
+- Ruby 3.4.3
+- PostgreSQL 16
+- Hotwire
+- バニラCSS
 
-* System dependencies
+### インフラ
+- Docker
+- Docker Compose
+- Nginx
 
-* Configuration
+## 🚀 デプロイ手順（ChromeOS Debian仮想マシン）
 
-* Database creation
+### 1. リポジトリをクローン
 
-* Database initialization
+```bash
+git clone <このリポジトリのURL>
+cd mypage
+```
 
-* How to run the test suite
+### 2. Dockerをインストール（初回のみ）
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
-* Deployment instructions
+インストール後、**一度ログアウトして再ログイン**してください。
 
-* ...
+### 3. アプリケーションをデプロイ
+
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+RAILS_MASTER_KEYの入力を求められたら、提供されたキーを入力してください。
+
+### 4. アクセス
+
+ChromeOSブラウザで以下にアクセス：
+- http://penguin.linux.test
+- http://localhost
+
+## 📝 その他のコマンド
+
+### ログ確認
+```bash
+docker compose logs -f
+```
+
+### 停止
+```bash
+docker compose down
+```
+
+### 再起動
+```bash
+docker compose restart
+```
+
+### コンテナの状態確認
+```bash
+docker compose ps
+```
