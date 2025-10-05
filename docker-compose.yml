@@ -34,7 +34,7 @@ services:
     image: nginx:alpine
     container_name: mypage_nginx
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./public:/rails/public
