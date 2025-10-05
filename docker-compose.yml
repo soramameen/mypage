@@ -9,11 +9,16 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
     container_name: mypage_web
-    command: bash -c "bin/rails db:prepare && bin/rails server -b 0.0.0.0"
+    command: bash -c "sleep 10 && bin/rails db:prepare && bin/rails server -b 0.0.0.0"
     environment:
       RAILS_ENV: production
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/mypage_production
@@ -21,7 +26,8 @@ services:
     volumes:
       - ./:/rails
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
 
   nginx:
