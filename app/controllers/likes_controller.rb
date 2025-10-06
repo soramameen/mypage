@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def show
-    like = Like.find_by(identifier: params[:page_identifier])
+    like = Like.find_by(page_identifier: params[:page_identifier])
     render json: { count: like ? like.count : 0 }
   end
 
