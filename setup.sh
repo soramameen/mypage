@@ -16,7 +16,11 @@ sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 
 # DockerのGPGキーを追加
 echo "DockerのGPGキーを追加中..."
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+if [ ! -f /usr/share/keyrings/docker-archive-keyring.gpg ]; then
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+else
+  echo "GPGキーは既に存在します。スキップします。"
+fi
 
 # Dockerリポジトリを追加
 echo "Dockerリポジトリを追加中..."
