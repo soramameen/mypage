@@ -7,7 +7,7 @@ document.addEventListener('turbo:load',() => {
   fetch(`/likes/${pageId}`)
     .then(response => response.json())
     .then(data => {
-      likeCount.textContent = data.likes;
+      likeCount.textContent = data.count;
     })
 
   likeButton.addEventListener('click', () => {
@@ -20,7 +20,7 @@ document.addEventListener('turbo:load',() => {
     })
     .then(response => response.json())
     .then(data => {
-      likeCount.textContent = data.likes;
+      likeCount.textContent = data.count;
     });
   });
 });
