@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get "articles/rails-deployment", to: "articles#rails_deployment"
   get "pages/home"
   root "pages#home"
+  
+  post 'likes/increment'. to: 'likes#create'
+  get 'likes/:page_identifier', to: 'likes#show'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
