@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "articles/index"
+  get "articles/rails-deployment", to: "articles#rails_deployment"
   get "pages/home"
   root "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
