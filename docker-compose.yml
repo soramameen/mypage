@@ -23,6 +23,8 @@ services:
       RAILS_ENV: production
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/mypage_production
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    volumes:
+      - ./:/rails
     depends_on:
       postgres:
         condition: service_healthy
@@ -35,8 +37,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    volumes_from:
-      - web
+      - ./public:/rails/public
     depends_on:
       - web
     restart: unless-stopped
