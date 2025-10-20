@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, blog]) do |form| %>
+<%= form_with(model: [:admin, blog], data: { turbo: false }) do |form| %>
   <% if blog.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
