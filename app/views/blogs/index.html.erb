@@ -3,7 +3,7 @@
 <ul>
   <% @blogs.each do |blog| %>
     <li>
-      <%= link_to blog.title, blog_path(blog) %>
+      <%= link_to blog.numbered_title, blog_path(blog) %>
     </li>
   <% end %>
 </ul>

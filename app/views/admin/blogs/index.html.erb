@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>番号</th>
       <th>タイトル</th>
       <th>作成日</th>
       <th>操作</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
+        <td>#<%= blog.blog_number %></td>
         <td><%= blog.title %></td>
         <td><%= blog.created_at.strftime("%Y-%m-%d") %></td>
         <td>
