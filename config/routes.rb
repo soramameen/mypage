@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  get "articles/index"
-  get "articles/rails-deployment", to: "articles#rails_deployment"
   get "pages/home"
   root "pages#home"
+
+  resources :blogs, only: [ :index, :show ]
+
+  namespace :admin do
+    root to: redirect("/admin/blogs")
+    resources :blogs
+  end
 
   post "likes/increment", to: "likes#create"
   get "likes/:page_identifier", to: "likes#show"
