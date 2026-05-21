@@ -1,0 +1,9 @@
+one:
+  content: First Message
+  room: one
+  user_name: Alice
+
+two:
+  content: Second Message
+  room: two
+  user_name: Bob

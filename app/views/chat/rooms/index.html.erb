@@ -1,0 +1,42 @@
+<h1>チャットルーム</h1>
+
+<% if session[:user_name].present? %>
+  <p>こんにちは、<%= session[:user_name] %>さん</p>
+<% else %>
+  <div>
+    <h2>ユーザー名を設定</h2>
+    <%= form_with url: chat_set_name_path, method: :post, data: { turbo: true } do |f| %>
+      <div>
+        <%= f.label :user_name, "ユーザー名" %>
+        <%= f.text_field :user_name %>
+      </div>
+      <div>
+        <%= f.submit "チャットを始める" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div>
+  <h2>新しい部屋を作成</h2>
+  <%= turbo_frame_tag "room_form" do %>
+    <%= form_with model: @room, url: chat_rooms_path, data: { turbo: true } do |f| %>
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.submit "部屋を作る" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h2>ルーム一覧</h2>
+<ul id="rooms_list">
+  <% @rooms.each do |room| %>
+    <li>
+      <%= link_to room.name, chat_room_path(room) %>
+    </li>
+  <% end %>
+</ul>

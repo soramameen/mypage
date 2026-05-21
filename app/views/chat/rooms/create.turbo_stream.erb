@@ -1,0 +1,17 @@
+<%= turbo_stream.append "rooms_list" do %>
+  <li>
+    <%= link_to @room.name, chat_room_path(@room) %>
+  </li>
+<% end %>
+
+<%= turbo_stream.replace "room_form" do %>
+  <%= form_with model: Room.new, url: chat_rooms_path, data: { turbo: true } do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.submit "部屋を作る" %>
+    </div>
+  <% end %>
+<% end %>

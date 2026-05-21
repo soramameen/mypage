@@ -1,0 +1,5 @@
+<%= form_with model: [room, message], url: chat_room_messages_path(room), data: { controller: "message", action: "turbo:submit-start->message#loading turbo:submit-end->message#reset", class: "chat-form" } do |f| %>
+  <%= f.text_field :content, placeholder: "メッセージを入力...", data: { message_target: "input", action: "input->message#typing" }, autocomplete: "off" %>
+  <%= f.submit "送信", data: { message_target: "submit" } %>
+  <span id="loading-indicator" style="display: none;">送信中...</span>
+<% end %>

@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "reactions_#{@message.id}" do %>
+  <div class="reactions" id="reactions_<%= @message.id %>">
+    <% Reaction::ALLOWED_EMOJIS.each do |emoji| %>
+      <%= button_to emoji,
+          chat_room_message_reactions_path(@room, @message, emoji: emoji),
+          method: :post,
+          data: { turbo: true, controller: "reaction", action: "reaction#toggle" },
+          class: "reaction-button" %>
+    <% end %>
+  </div>
+<% end %>

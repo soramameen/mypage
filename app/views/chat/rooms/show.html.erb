@@ -1,0 +1,18 @@
+<div class="chat-room">
+  <div class="chat-header">
+    <h1><%= @room.name %></h1>
+  </div>
+
+  <div id="messages" class="chat-messages" data-controller="typing" data-typing-room-id-value="<%= @room.id %>">
+    <% @messages.each do |message| %>
+      <%= render "chat/messages/message", message: message %>
+    <% end %>
+  </div>
+
+  <div class="chat-footer" id="new_message">
+    <%= render "chat/messages/form", message: @message, room: @room %>
+  </div>
+
+  <%# Room specific ActionCable connection - pass room_id to message controller %>
+  <%= content_tag :div, "", data: { controller: "message", message_room_id_value: @room.id }, id: "room-data", style: "display: none;" %>
+</div>

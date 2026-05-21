@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "new_message" do %>
+  <%= form_with model: @message, url: chat_room_messages_path(@room), data: { turbo: true } do |f| %>
+    <div>
+      <%= f.text_field :content, placeholder: "メッセージを入力..." %>
+      <%= f.submit "送信" %>
+    </div>
+  <% end %>
+<% end %>

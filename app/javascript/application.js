@@ -2,3 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "likes"
+
+// ActionCable setup
+import * as ActionCable from "@rails/actioncable"
+
+window.App ||= {}
+App.cable = ActionCable.createConsumer()

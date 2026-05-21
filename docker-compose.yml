@@ -19,10 +19,13 @@ services:
     build: .
     container_name: mypage_web
     command: bash -c "sleep 10 && bin/rails db:prepare && bin/rails server -b 0.0.0.0"
+    env_file: .env
     environment:
       RAILS_ENV: production
+      RAILS_TEST_ENV: production
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/mypage_production
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      TEST_DATABASE_URL: postgresql://postgres:postgres@postgres:5432/mypage_test
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     volumes:
       - public_assets:/rails/public
     depends_on:

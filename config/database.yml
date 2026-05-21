@@ -59,10 +59,11 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: mypage_test
   username: postgres
-  password: postgres
   host: localhost
   port: 5432
 
@@ -89,7 +90,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV.fetch("DATABASE_URL", "postgresql://postgres:postgres@postgres:5432/mypage_production") %>
   cache:
     <<: *primary_production
     database: mypage_production_cache

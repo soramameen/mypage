@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "edit_message_#{@message.id}" do %>
+  <%= form_with model: @message, url: chat_message_path(@message), method: :patch, data: { turbo: true } do |f| %>
+    <div>
+      <%= f.text_area :content, rows: 3 %>
+      <%= f.submit "更新" %>
+    </div>
+  <% end %>
+<% end %>

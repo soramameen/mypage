@@ -1,0 +1,21 @@
+<%= turbo_stream.replace "message_#{@message.id}" do %>
+  <div class="message" id="message_<%= @message.id %>">
+    <div class="message-header">
+      <span class="user-name"><%= @message.user_name %></span>
+      <span class="timestamp"><%= @message.created_at.strftime("%H:%M") %></span>
+    </div>
+    <div class="message-content">
+      <%= @message.content %>
+    </div>
+    <div class="message-actions">
+      <% if @message.user_name == session[:user_name] %>
+        <%= button_to "編集", edit_chat_message_path(@message), method: :get, data: { turbo_frame: "edit_message_#{@message.id}" } %>
+        <%= button_to "削除", chat_message_path(@message), method: :delete, data: { turbo_confirm: "削除しますか？" } %>
+      <% end %>
+    </div>
+    <turbo-frame id="edit_message_<%= @message.id %>"></turbo-frame>
+    <div class="reactions" id="reactions_<%= @message.id %>">
+      <%= render "chat/reactions/reactions", message: @message %>
+    </div>
+  </div>
+<% end %>

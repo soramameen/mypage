@@ -1,0 +1,35 @@
+<%# Check if this is the current user's message %>
+<% is_own_message = message.user_name == session[:user_name] %>
+
+<div class="message <%= is_own_message ? 'message-own' : '' %>" id="message_<%= message.id %>">
+  <div class="message-bubble">
+    <%# User name shown above bubble for other users %>
+    <% unless is_own_message %>
+      <div class="message-header">
+        <span class="user-name"><%= message.user_name %></span>
+      </div>
+    <% end %>
+
+    <div class="message-content">
+      <%= message.content %>
+    </div>
+
+    <%# Timestamp inside bubble, bottom right %>
+    <div class="message-header">
+      <span class="timestamp"><%= message.created_at.strftime("%H:%M") %></span>
+    </div>
+  </div>
+
+  <div class="message-actions">
+    <% if is_own_message %>
+      <%= button_to "編集", edit_chat_message_path(message), method: :get, data: { turbo_frame: "edit_message_#{message.id}" } %>
+      <%= button_to "削除", chat_message_path(message), method: :delete, data: { turbo_confirm: "削除しますか？" } %>
+    <% end %>
+  </div>
+
+  <turbo-frame id="edit_message_<%= message.id %>"></turbo-frame>
+
+  <div class="reactions" id="reactions_<%= message.id %>">
+    <%= render "chat/reactions/reactions", message: message %>
+  </div>
+</div>

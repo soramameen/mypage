@@ -1,0 +1,7 @@
+<% Reaction::ALLOWED_EMOJIS.each do |emoji| %>
+  <%= button_to emoji,
+      chat_room_message_reactions_path(message.room, message, emoji: emoji),
+      method: :post,
+      data: { turbo: true, controller: "reaction", action: "reaction#toggle" },
+      class: "reaction-button" %>
+<% end %>

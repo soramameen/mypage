@@ -1,0 +1,14 @@
+one:
+  message: one
+  user_name: Alice
+  emoji: 👍
+
+two:
+  message: one
+  user_name: Bob
+  emoji: ❤️
+
+three:
+  message: two
+  user_name: Alice
+  emoji: 😂
